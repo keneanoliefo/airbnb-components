@@ -21,6 +21,13 @@ import { PhotoGallery } from "@/components/airbnb/PhotoGallery";
 import { ExploreSection } from "@/components/airbnb/ExploreSection";
 import { Footer } from "@/components/airbnb/Footer";
 import { DateRangeFilter } from "@/components/airbnb/DateRangeFilter";
+import { ReviewCard } from "@/components/airbnb/ReviewCard";
+import { ReviewList } from "@/components/airbnb/ReviewList";
+import { CompactSearchBar } from "@/components/airbnb/CompactSearchBar";
+import { CalendarPicker } from "@/components/airbnb/CalendarPicker";
+import { PropertyFeatureList } from "@/components/airbnb/PropertyFeatureList";
+import { RatingBreakdown } from "@/components/airbnb/RatingBreakdown";
+import { PropertyImageGallery } from "@/components/airbnb/PropertyImageGallery";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 
@@ -34,6 +41,7 @@ const Index = () => {
   const [showLogin, setShowLogin] = useState(false);
   const [numberValue, setNumberValue] = useState(2);
   const [rangeValue, setRangeValue] = useState<[number, number]>([100, 500]);
+  const [selectedDates, setSelectedDates] = useState<[Date | null, Date | null]>([null, null]);
 
   // Sample property data
   const properties = [
@@ -76,6 +84,72 @@ const Index = () => {
       badges: ["Save", "Guest favorite"],
       bedType: "1 sofa bed",
     },
+  ];
+
+  // Sample review data
+  const sampleReviews = [
+    {
+      id: "1",
+      userName: "Vanessa",
+      userAvatar: property1,
+      location: "Sedona, Arizona",
+      rating: 5,
+      date: "3 weeks ago",
+      stayDuration: "Stayed a few nights",
+      reviewText: "We had an amazing stay at Suzanna's place! Very safe and peaceful neighborhood with easy street parking. The space was exactly as listed and we enjoyed waking up with the sun!",
+    },
+    {
+      id: "2",
+      userName: "Christina",
+      userAvatar: property2,
+      location: "Seattle, Washington",
+      rating: 5,
+      date: "August 2025",
+      stayDuration: "Stayed a few nights",
+      reviewText: "This is a lovely, light-filled cottage on a beautiful street, and the bed, pillows, and bedding are very comfy. I feel like it's a great deal for how charming and comfortable it is! You can walk to shops and restaurants easily.",
+    },
+    {
+      id: "3",
+      userName: "Matthew",
+      userAvatar: property3,
+      location: "New York, United States",
+      rating: 5,
+      date: "July 2025",
+      stayDuration: "Stayed a few nights", 
+      reviewText: "A lovely, cozy spot in Los Angeles! As described, it's on the small side... but if you are like us and just looking for a quiet place to sleep while you are spending your days out and about, this is perfect! Suzanna was very responsive and helpful.",
+    },
+  ];
+
+  // Sample property features
+  const propertyFeatures = [
+    {
+      id: "1",
+      title: "Self check-in",
+      description: "Check yourself in with the lockbox.",
+      icon: "selfCheckIn" as const,
+    },
+    {
+      id: "2", 
+      title: "Peace and quiet",
+      description: "Guests say this home is in a quiet area.",
+      icon: "peaceAndQuiet" as const,
+    },
+    {
+      id: "3",
+      title: "Free cancellation before Dec 18",
+      description: "Get a full refund if you change your mind.",
+      icon: "freeCancellation" as const,
+    },
+  ];
+
+  // Sample rating categories
+  const ratingCategories = [
+    { id: "1", name: "Cleanliness", rating: 4.8, icon: "cleanliness" as const },
+    { id: "2", name: "Accuracy", rating: 5.0, icon: "accuracy" as const },
+    { id: "3", name: "Check-in", rating: 5.0, icon: "checkin" as const },
+    { id: "4", name: "Communication", rating: 5.0, icon: "communication" as const },
+    { id: "5", name: "Location", rating: 5.0, icon: "location" as const },
+    { id: "6", name: "Value", rating: 4.9, icon: "value" as const },
   ];
 
   return (
@@ -216,57 +290,60 @@ const Index = () => {
               />
             </div>
 
-            {/* New Navigation Components */}
+            {/* New Review Components */}
             <div className="space-y-8">
               <Card className="p-6">
-                <h3 className="text-lg font-semibold mb-4">Navigation Tabs</h3>
-                <NavigationTabs
-                  tabs={[
-                    { id: "homes", label: "Homes", icon: "🏠", isActive: true },
-                    { id: "experiences", label: "Experiences", icon: "🎨", isNew: true },
-                    { id: "services", label: "Services", icon: "🛎️", isNew: true },
-                  ]}
-                  onTabClick={(tabId) => console.log("Tab clicked:", tabId)}
+                <h3 className="text-lg font-semibold mb-4">Review Components</h3>
+                <ReviewList
+                  reviews={sampleReviews}
+                  maxVisible={2}
+                  onShowAllReviews={() => console.log("Show all reviews")}
                 />
               </Card>
 
               <Card className="p-6">
-                <h3 className="text-lg font-semibold mb-4">Search Suggestions</h3>
-                <SearchSuggestions
-                  suggestions={[
-                    { id: "nearby", title: "Nearby", description: "Find what's around you", icon: "✈️", iconColor: "#059669" },
-                    { id: "vegas", title: "Las Vegas, NV", description: "For sights like Stratosphere Tower", icon: "🏢", iconColor: "#dc2626" },
-                    { id: "la", title: "Los Angeles, CA", description: "For its bustling nightlife", icon: "🎭", iconColor: "#ea580c" },
-                  ]}
-                  onSuggestionClick={(suggestion) => console.log("Suggestion clicked:", suggestion)}
+                <h3 className="text-lg font-semibold mb-4">Rating Breakdown</h3>
+                <RatingBreakdown
+                  overallRating={4.81}
+                  totalReviews={21}
+                  categories={ratingCategories}
                 />
               </Card>
 
               <Card className="p-6">
-                <h3 className="text-lg font-semibold mb-4">Date Range Filter</h3>
-                <DateRangeFilter
-                  onFilterSelect={(option) => console.log("Filter selected:", option)}
+                <h3 className="text-lg font-semibold mb-4">Property Features</h3>
+                <PropertyFeatureList features={propertyFeatures} />
+              </Card>
+
+              <Card className="p-6">
+                <h3 className="text-lg font-semibold mb-4">Property Image Gallery</h3>
+                <PropertyImageGallery
+                  title="Eagle Rock Carriage House"
+                  subtitle="Entire guesthouse in Los Angeles, California"
+                  mainImage={property1}
+                  thumbnails={[property2, property3, property1, property2]}
+                  onShowAllPhotos={() => console.log("Show all photos")}
+                  onShare={() => console.log("Share")}
+                  onSave={() => console.log("Save")}
                 />
               </Card>
 
               <Card className="p-6">
-                <h3 className="text-lg font-semibold mb-4">Guest Selector</h3>
-                <GuestSelector
-                  adults={2}
-                  children={1}
-                  onGuestChange={(guests) => console.log("Guests changed:", guests)}
+                <h3 className="text-lg font-semibold mb-4">Compact Search Bar</h3>
+                <CompactSearchBar
+                  location="San Diego, CA"
+                  dates="Dec 19-21"
+                  guests="2 guests"
+                  onSearchClick={() => console.log("Compact search clicked")}
                 />
               </Card>
 
               <Card className="p-6">
-                <h3 className="text-lg font-semibold mb-4">Amenity List</h3>
-                <AmenityList
-                  amenities={[
-                    { id: "wifi", name: "Wifi", icon: "wifi" },
-                    { id: "parking", name: "Free street parking", icon: "parking" },
-                    { id: "ac", name: "Air conditioning", icon: "ac" },
-                    { id: "backyard", name: "Backyard", icon: "backyard" },
-                  ]}
+                <h3 className="text-lg font-semibold mb-4">Calendar Picker</h3>
+                <CalendarPicker
+                  selectedDates={selectedDates}
+                  onDateSelect={setSelectedDates}
+                  onClearDates={() => setSelectedDates([null, null])}
                 />
               </Card>
             </div>
