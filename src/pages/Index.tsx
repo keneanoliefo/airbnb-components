@@ -28,6 +28,10 @@ import { CalendarPicker } from "@/components/airbnb/CalendarPicker";
 import { PropertyFeatureList } from "@/components/airbnb/PropertyFeatureList";
 import { RatingBreakdown } from "@/components/airbnb/RatingBreakdown";
 import { PropertyImageGallery } from "@/components/airbnb/PropertyImageGallery";
+import { SearchInputGroup } from "@/components/airbnb/SearchInputGroup";
+import { FavoriteBadge } from "@/components/airbnb/FavoriteBadge";
+import { CarouselNavigation } from "@/components/airbnb/CarouselNavigation";
+import { SectionHeader } from "@/components/airbnb/SectionHeader";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 
@@ -290,60 +294,103 @@ const Index = () => {
               />
             </div>
 
-            {/* New Review Components */}
+            {/* Latest Components from Homepage */}
             <div className="space-y-8">
               <Card className="p-6">
-                <h3 className="text-lg font-semibold mb-4">Review Components</h3>
-                <ReviewList
-                  reviews={sampleReviews}
-                  maxVisible={2}
-                  onShowAllReviews={() => console.log("Show all reviews")}
+                <h3 className="text-lg font-semibold mb-4">Search Input Group</h3>
+                <SearchInputGroup
+                  destinationValue="San Diego, CA"
+                  checkInValue="Dec 19"
+                  checkOutValue="Dec 21"
+                  guestsValue="2 guests"
+                  onDestinationChange={(value) => console.log("Destination:", value)}
+                  onCheckInChange={(value) => console.log("Check-in:", value)}
+                  onCheckOutChange={(value) => console.log("Check-out:", value)}
+                  onGuestsChange={(value) => console.log("Guests:", value)}
+                  onSearch={() => console.log("Search clicked")}
                 />
               </Card>
 
               <Card className="p-6">
-                <h3 className="text-lg font-semibold mb-4">Rating Breakdown</h3>
-                <RatingBreakdown
-                  overallRating={4.81}
-                  totalReviews={21}
-                  categories={ratingCategories}
+                <h3 className="text-lg font-semibold mb-4">Favorite Badge</h3>
+                <div className="flex gap-4">
+                  <FavoriteBadge text="Guest favorite" />
+                  <FavoriteBadge text="Superhost" />
+                  <FavoriteBadge text="New" />
+                </div>
+              </Card>
+
+              <Card className="p-6">
+                <h3 className="text-lg font-semibold mb-4">Carousel Navigation</h3>
+                <div className="flex justify-center">
+                  <CarouselNavigation
+                    onPreviousClick={() => console.log("Previous")}
+                    onNextClick={() => console.log("Next")}
+                  />
+                </div>
+              </Card>
+
+              <Card className="p-6">
+                <h3 className="text-lg font-semibold mb-4">Section Header with Navigation</h3>
+                <SectionHeader
+                  title="Popular homes in Los Angeles"
+                  onPreviousClick={() => console.log("Previous section")}
+                  onNextClick={() => console.log("Next section")}
+                />
+              </Card>
+            </div>
+
+            {/* Previous Navigation Components */}
+            <div className="space-y-8">
+              <Card className="p-6">
+                <h3 className="text-lg font-semibold mb-4">Navigation Tabs</h3>
+                <NavigationTabs
+                  tabs={[
+                    { id: "homes", label: "Homes", icon: "🏠", isActive: true },
+                    { id: "experiences", label: "Experiences", icon: "🎨", isNew: true },
+                    { id: "services", label: "Services", icon: "🛎️", isNew: true },
+                  ]}
+                  onTabClick={(tabId) => console.log("Tab clicked:", tabId)}
                 />
               </Card>
 
               <Card className="p-6">
-                <h3 className="text-lg font-semibold mb-4">Property Features</h3>
-                <PropertyFeatureList features={propertyFeatures} />
-              </Card>
-
-              <Card className="p-6">
-                <h3 className="text-lg font-semibold mb-4">Property Image Gallery</h3>
-                <PropertyImageGallery
-                  title="Eagle Rock Carriage House"
-                  subtitle="Entire guesthouse in Los Angeles, California"
-                  mainImage={property1}
-                  thumbnails={[property2, property3, property1, property2]}
-                  onShowAllPhotos={() => console.log("Show all photos")}
-                  onShare={() => console.log("Share")}
-                  onSave={() => console.log("Save")}
+                <h3 className="text-lg font-semibold mb-4">Search Suggestions</h3>
+                <SearchSuggestions
+                  suggestions={[
+                    { id: "nearby", title: "Nearby", description: "Find what's around you", icon: "✈️", iconColor: "#059669" },
+                    { id: "vegas", title: "Las Vegas, NV", description: "For sights like Stratosphere Tower", icon: "🏢", iconColor: "#dc2626" },
+                    { id: "la", title: "Los Angeles, CA", description: "For its bustling nightlife", icon: "🎭", iconColor: "#ea580c" },
+                  ]}
+                  onSuggestionClick={(suggestion) => console.log("Suggestion clicked:", suggestion)}
                 />
               </Card>
 
               <Card className="p-6">
-                <h3 className="text-lg font-semibold mb-4">Compact Search Bar</h3>
-                <CompactSearchBar
-                  location="San Diego, CA"
-                  dates="Dec 19-21"
-                  guests="2 guests"
-                  onSearchClick={() => console.log("Compact search clicked")}
+                <h3 className="text-lg font-semibold mb-4">Date Range Filter</h3>
+                <DateRangeFilter
+                  onFilterSelect={(option) => console.log("Filter selected:", option)}
                 />
               </Card>
 
               <Card className="p-6">
-                <h3 className="text-lg font-semibold mb-4">Calendar Picker</h3>
-                <CalendarPicker
-                  selectedDates={selectedDates}
-                  onDateSelect={setSelectedDates}
-                  onClearDates={() => setSelectedDates([null, null])}
+                <h3 className="text-lg font-semibold mb-4">Guest Selector</h3>
+                <GuestSelector
+                  adults={2}
+                  children={1}
+                  onGuestChange={(guests) => console.log("Guests changed:", guests)}
+                />
+              </Card>
+
+              <Card className="p-6">
+                <h3 className="text-lg font-semibold mb-4">Amenity List</h3>
+                <AmenityList
+                  amenities={[
+                    { id: "wifi", name: "Wifi", icon: "wifi" },
+                    { id: "parking", name: "Free street parking", icon: "parking" },
+                    { id: "ac", name: "Air conditioning", icon: "ac" },
+                    { id: "backyard", name: "Backyard", icon: "backyard" },
+                  ]}
                 />
               </Card>
             </div>
