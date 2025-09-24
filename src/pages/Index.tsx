@@ -32,6 +32,7 @@ import { SearchInputGroup } from "@/components/airbnb/SearchInputGroup";
 import { FavoriteBadge } from "@/components/airbnb/FavoriteBadge";
 import { CarouselNavigation } from "@/components/airbnb/CarouselNavigation";
 import { SectionHeader } from "@/components/airbnb/SectionHeader";
+import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 
@@ -227,32 +228,121 @@ const Index = () => {
               </Card>
             </div>
 
-            {/* Range Slider */}
-            <Card className="p-6 space-y-4">
-              <h3 className="text-lg font-semibold">Price Range Slider</h3>
-              <RangeSlider
-                min={0}
-                max={1000}
-                step={10}
-                value={rangeValue}
-                onChange={setRangeValue}
-              />
-            </Card>
+            {/* Design System Showcase */}
+            <div className="space-y-8">
+              <Card className="p-6">
+                <h3 className="text-lg font-semibold mb-4">Enhanced Button Variants</h3>
+                <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                  <Button variant="default">Default</Button>
+                  <Button variant="airbnb-primary">Airbnb Primary</Button>
+                  <Button variant="airbnb-outline">Airbnb Outline</Button>
+                  <Button variant="coral">Coral</Button>
+                  <Button variant="coral-light">Coral Light</Button>
+                  <Button variant="success">Success</Button>
+                  <Button variant="warning">Warning</Button>
+                  <Button variant="info">Info</Button>
+                  <Button variant="secondary">Secondary</Button>
+                  <Button variant="outline">Outline</Button>
+                  <Button variant="ghost">Ghost</Button>
+                  <Button variant="link">Link</Button>
+                </div>
+              </Card>
 
-            {/* Price Breakdown */}
-            <Card className="p-6 space-y-4">
-              <h3 className="text-lg font-semibold">Price Breakdown</h3>
-              <PriceBreakdown
-                basePrice={194.25}
-                nights={3}
-                discount={{
-                  label: "Early bird discount",
-                  amount: -67.49,
-                }}
-                taxes={57.57}
-                total={572.82}
-              />
-            </Card>
+              <Card className="p-6">
+                <h3 className="text-lg font-semibold mb-4">Button Sizes</h3>
+                <div className="flex flex-wrap items-center gap-4">
+                  <Button size="sm">Small</Button>
+                  <Button size="default">Default</Button>
+                  <Button size="lg">Large</Button>
+                  <Button size="xl">Extra Large</Button>
+                  <Button size="icon">🔍</Button>
+                </div>
+              </Card>
+
+              <Card className="p-6">
+                <h3 className="text-lg font-semibold mb-4">Typography Scale</h3>
+                <div className="space-y-3">
+                  <div className="text-5xl font-bold">Heading 1 - 5XL Bold</div>
+                  <div className="text-4xl font-semibold">Heading 2 - 4XL Semibold</div>
+                  <div className="text-3xl font-semibold">Heading 3 - 3XL Semibold</div>
+                  <div className="text-2xl font-semibold">Heading 4 - 2XL Semibold</div>
+                  <div className="text-xl font-medium">Heading 5 - XL Medium</div>
+                  <div className="text-lg font-medium">Heading 6 - LG Medium</div>
+                  <div className="text-base">Body text - Base</div>
+                  <div className="text-sm text-muted-foreground">Small text - SM Muted</div>
+                  <div className="text-xs text-muted-foreground">Extra small - XS Muted</div>
+                </div>
+              </Card>
+
+              <Card className="p-6">
+                <h3 className="text-lg font-semibold mb-4">Color Palette</h3>
+                <div className="space-y-4">
+                  <div>
+                    <h4 className="font-medium mb-2">Primary Colors</h4>
+                    <div className="flex gap-2">
+                      <div className="w-16 h-16 bg-primary rounded-lg flex items-center justify-center text-white text-xs">Primary</div>
+                      <div className="w-16 h-16 bg-primary-hover rounded-lg flex items-center justify-center text-white text-xs">Hover</div>
+                      <div className="w-16 h-16 bg-primary-light rounded-lg flex items-center justify-center text-primary text-xs">Light</div>
+                    </div>
+                  </div>
+                  
+                  <div>
+                    <h4 className="font-medium mb-2">Airbnb Colors</h4>
+                    <div className="flex gap-2">
+                      <div className="w-16 h-16 bg-airbnb-coral rounded-lg flex items-center justify-center text-white text-xs">Coral</div>
+                      <div className="w-16 h-16 bg-airbnb-coral-dark rounded-lg flex items-center justify-center text-white text-xs">Dark</div>
+                      <div className="w-16 h-16 bg-airbnb-coral-light rounded-lg flex items-center justify-center text-airbnb-coral text-xs">Light</div>
+                      <div className="w-16 h-16 bg-airbnb-pink rounded-lg flex items-center justify-center text-white text-xs">Pink</div>
+                    </div>
+                  </div>
+
+                  <div>
+                    <h4 className="font-medium mb-2">Gray Scale</h4>
+                    <div className="flex gap-2">
+                      <div className="w-12 h-12 bg-gray-100 rounded-lg border"></div>
+                      <div className="w-12 h-12 bg-gray-200 rounded-lg"></div>
+                      <div className="w-12 h-12 bg-gray-300 rounded-lg"></div>
+                      <div className="w-12 h-12 bg-gray-400 rounded-lg"></div>
+                      <div className="w-12 h-12 bg-gray-500 rounded-lg"></div>
+                      <div className="w-12 h-12 bg-gray-600 rounded-lg"></div>
+                      <div className="w-12 h-12 bg-gray-700 rounded-lg"></div>
+                      <div className="w-12 h-12 bg-gray-800 rounded-lg"></div>
+                    </div>
+                  </div>
+
+                  <div>
+                    <h4 className="font-medium mb-2">Semantic Colors</h4>
+                    <div className="flex gap-2">
+                      <div className="w-16 h-16 bg-success rounded-lg flex items-center justify-center text-white text-xs">Success</div>
+                      <div className="w-16 h-16 bg-warning rounded-lg flex items-center justify-center text-white text-xs">Warning</div>
+                      <div className="w-16 h-16 bg-info rounded-lg flex items-center justify-center text-white text-xs">Info</div>
+                      <div className="w-16 h-16 bg-destructive rounded-lg flex items-center justify-center text-white text-xs">Error</div>
+                    </div>
+                  </div>
+                </div>
+              </Card>
+
+              <Card className="p-6">
+                <h3 className="text-lg font-semibold mb-4">Shadows & Effects</h3>
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                  <div className="p-4 bg-white rounded-lg shadow-card">Card Shadow</div>
+                  <div className="p-4 bg-white rounded-lg shadow-card-hover">Hover Shadow</div>
+                  <div className="p-4 bg-white rounded-lg shadow-button">Button Shadow</div>
+                  <div className="p-4 bg-white rounded-lg shadow-modal">Modal Shadow</div>
+                </div>
+              </Card>
+
+              <Card className="p-6">
+                <h3 className="text-lg font-semibold mb-4">Utility Classes</h3>
+                <div className="space-y-4">
+                  <div className="p-4 airbnb-card">Airbnb Card (.airbnb-card)</div>
+                  <button className="airbnb-button">Airbnb Button (.airbnb-button)</button>
+                  <input className="airbnb-input w-full max-w-sm" placeholder="Airbnb Input (.airbnb-input)" />
+                  <div className="text-gradient text-2xl font-bold">Gradient Text (.text-gradient)</div>
+                  <div className="p-6 bg-gradient-primary text-white rounded-lg">Primary Gradient Background</div>
+                </div>
+              </Card>
+            </div>
 
             {/* Two Column Layout Example */}
             <div>
