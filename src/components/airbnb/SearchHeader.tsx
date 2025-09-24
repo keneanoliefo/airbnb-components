@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
+import { Logo } from "./Logo";
 import { 
   Search, 
   MapPin, 
@@ -47,16 +48,12 @@ export const SearchHeader: React.FC<SearchHeaderProps> = ({
         <div className="flex items-center justify-between py-4">
           {/* Logo */}
           <div className="flex items-center">
-            <div className="text-2xl font-bold text-primary">
-              <svg 
-                width="32" 
-                height="32" 
-                fill="currentColor"
-                viewBox="0 0 32 32"
-              >
-                <path d="M16 1c2 0 3.5 1.5 3.5 3.5 0 1.5-1 2.5-1.5 3.5L16 10.5 14 8c-.5-1-1.5-2-1.5-3.5C12.5 2.5 14 1 16 1zm0 16c-2.5 0-10 1.25-10 3.75V22h20v-1.25C26 18.25 18.5 17 16 17z"/>
-              </svg>
-            </div>
+            <Logo 
+              variant="symbol" 
+              size="lg" 
+              onClick={() => console.log("Logo clicked")}
+              className="transition-transform hover:scale-105"
+            />
           </div>
 
           {/* Search Bar */}

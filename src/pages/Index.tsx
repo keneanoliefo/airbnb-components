@@ -32,6 +32,7 @@ import { SearchInputGroup } from "@/components/airbnb/SearchInputGroup";
 import { FavoriteBadge } from "@/components/airbnb/FavoriteBadge";
 import { CarouselNavigation } from "@/components/airbnb/CarouselNavigation";
 import { SectionHeader } from "@/components/airbnb/SectionHeader";
+import { Logo } from "@/components/airbnb/Logo";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -329,6 +330,28 @@ const Index = () => {
                   <div className="p-4 bg-white rounded-lg shadow-card-hover">Hover Shadow</div>
                   <div className="p-4 bg-white rounded-lg shadow-button">Button Shadow</div>
                   <div className="p-4 bg-white rounded-lg shadow-modal">Modal Shadow</div>
+                </div>
+              </Card>
+
+              <Card className="p-6">
+                <h3 className="text-lg font-semibold mb-4">Airbnb Logos</h3>
+                <div className="flex flex-wrap items-center gap-8">
+                  <div className="space-y-2">
+                    <p className="text-sm text-muted-foreground">Symbol Logo</p>
+                    <div className="flex items-center gap-4">
+                      <Logo variant="symbol" size="sm" />
+                      <Logo variant="symbol" size="md" />
+                      <Logo variant="symbol" size="lg" />
+                      <Logo variant="symbol" size="xl" />
+                    </div>
+                  </div>
+                  <div className="space-y-2">
+                    <p className="text-sm text-muted-foreground">Full Logo</p>
+                    <div className="flex flex-col gap-4">
+                      <Logo variant="full" size="md" />
+                      <Logo variant="full" size="lg" />
+                    </div>
+                  </div>
                 </div>
               </Card>
 
