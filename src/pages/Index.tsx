@@ -11,6 +11,16 @@ import { RangeSlider } from "@/components/airbnb/RangeSlider";
 import { FilterSection } from "@/components/airbnb/FilterSection";
 import { GridLayout } from "@/components/airbnb/GridLayout";
 import { TwoColumnLayout } from "@/components/airbnb/TwoColumnLayout";
+import { NavigationTabs } from "@/components/airbnb/NavigationTabs";
+import { SearchSuggestions } from "@/components/airbnb/SearchSuggestions";
+import { HostProfile } from "@/components/airbnb/HostProfile";
+import { AmenityList } from "@/components/airbnb/AmenityList";
+import { BookingWidget } from "@/components/airbnb/BookingWidget";
+import { GuestSelector } from "@/components/airbnb/GuestSelector";
+import { PhotoGallery } from "@/components/airbnb/PhotoGallery";
+import { ExploreSection } from "@/components/airbnb/ExploreSection";
+import { Footer } from "@/components/airbnb/Footer";
+import { DateRangeFilter } from "@/components/airbnb/DateRangeFilter";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 
@@ -206,6 +216,192 @@ const Index = () => {
               />
             </div>
 
+            {/* New Navigation Components */}
+            <div className="space-y-8">
+              <Card className="p-6">
+                <h3 className="text-lg font-semibold mb-4">Navigation Tabs</h3>
+                <NavigationTabs
+                  tabs={[
+                    { id: "homes", label: "Homes", icon: "🏠", isActive: true },
+                    { id: "experiences", label: "Experiences", icon: "🎨", isNew: true },
+                    { id: "services", label: "Services", icon: "🛎️", isNew: true },
+                  ]}
+                  onTabClick={(tabId) => console.log("Tab clicked:", tabId)}
+                />
+              </Card>
+
+              <Card className="p-6">
+                <h3 className="text-lg font-semibold mb-4">Search Suggestions</h3>
+                <SearchSuggestions
+                  suggestions={[
+                    { id: "nearby", title: "Nearby", description: "Find what's around you", icon: "✈️", iconColor: "#059669" },
+                    { id: "vegas", title: "Las Vegas, NV", description: "For sights like Stratosphere Tower", icon: "🏢", iconColor: "#dc2626" },
+                    { id: "la", title: "Los Angeles, CA", description: "For its bustling nightlife", icon: "🎭", iconColor: "#ea580c" },
+                  ]}
+                  onSuggestionClick={(suggestion) => console.log("Suggestion clicked:", suggestion)}
+                />
+              </Card>
+
+              <Card className="p-6">
+                <h3 className="text-lg font-semibold mb-4">Date Range Filter</h3>
+                <DateRangeFilter
+                  onFilterSelect={(option) => console.log("Filter selected:", option)}
+                />
+              </Card>
+
+              <Card className="p-6">
+                <h3 className="text-lg font-semibold mb-4">Guest Selector</h3>
+                <GuestSelector
+                  adults={2}
+                  children={1}
+                  onGuestChange={(guests) => console.log("Guests changed:", guests)}
+                />
+              </Card>
+
+              <Card className="p-6">
+                <h3 className="text-lg font-semibold mb-4">Amenity List</h3>
+                <AmenityList
+                  amenities={[
+                    { id: "wifi", name: "Wifi", icon: "wifi" },
+                    { id: "parking", name: "Free street parking", icon: "parking" },
+                    { id: "ac", name: "Air conditioning", icon: "ac" },
+                    { id: "backyard", name: "Backyard", icon: "backyard" },
+                  ]}
+                />
+              </Card>
+            </div>
+
+            {/* Host Profile Section */}
+            <div>
+              <h2 className="text-2xl font-semibold mb-6">Host Components</h2>
+              <HostProfile
+                name="Suzanna"
+                avatar={property1}
+                reviewCount={21}
+                rating={4.81}
+                monthsHosting={4}
+                responseRate="100%"
+                responseTime="Responds within an hour"
+                location="Los Angeles, California"
+                isVerified={true}
+                onMessageHost={() => console.log("Message host clicked")}
+              />
+            </div>
+
+            {/* Booking Widget with Two Column Layout */}
+            <div>
+              <h2 className="text-2xl font-semibold mb-6">Booking Components</h2>
+              <TwoColumnLayout
+                leftColumn={
+                  <div className="space-y-6">
+                    <Card className="p-6">
+                      <h3 className="text-lg font-semibold mb-4">Property Description</h3>
+                      <p className="text-muted-foreground mb-4">
+                        Welcome to our charming carriage house studio, a cozy and private retreat perfect for 
+                        solo travelers or couples. Featuring a comfortable queen-sized bed, a full bathroom with 
+                        modern amenities, and a well-equipped kitchenette for light cooking.
+                      </p>
+                      
+                      <div className="space-y-4">
+                        <div className="flex items-center gap-3">
+                          <span className="text-lg">🏠</span>
+                          <div>
+                            <div className="font-medium">Self check-in</div>
+                            <div className="text-sm text-muted-foreground">Check yourself in with the lockbox.</div>
+                          </div>
+                        </div>
+                        
+                        <div className="flex items-center gap-3">
+                          <span className="text-lg">🌿</span>
+                          <div>
+                            <div className="font-medium">Peace and quiet</div>
+                            <div className="text-sm text-muted-foreground">Guests say this home is in a quiet area.</div>
+                          </div>
+                        </div>
+                        
+                        <div className="flex items-center gap-3">
+                          <span className="text-lg">📅</span>
+                          <div>
+                            <div className="font-medium">Free cancellation before Dec 18</div>
+                            <div className="text-sm text-muted-foreground">Get a full refund if you change your mind.</div>
+                          </div>
+                        </div>
+                      </div>
+                    </Card>
+                  </div>
+                }
+                rightColumn={
+                  <BookingWidget
+                    price={223}
+                    originalPrice={257}
+                    nights={2}
+                    rating={4.81}
+                    reviewCount={21}
+                    onReserve={() => console.log("Reserve clicked")}
+                  />
+                }
+                leftWidth="2/3"
+              />
+            </div>
+
+            {/* Photo Gallery */}
+            <div>
+              <h2 className="text-2xl font-semibold mb-6">Media Components</h2>
+              <Card className="p-6">
+                <h3 className="text-lg font-semibold mb-4">Photo Gallery</h3>
+                <div className="max-h-96 overflow-hidden">
+                  <PhotoGallery
+                    categories={[
+                      { 
+                        id: "living", 
+                        name: "Living area", 
+                        thumbnail: property1,
+                        photos: [property1, property2, property3]
+                      },
+                      { 
+                        id: "kitchen", 
+                        name: "Full kitchen", 
+                        thumbnail: property2,
+                        photos: [property2, property1, property3]
+                      },
+                      { 
+                        id: "bedroom", 
+                        name: "Bedroom area", 
+                        thumbnail: property3,
+                        photos: [property3, property1, property2]
+                      },
+                    ]}
+                    onBack={() => console.log("Back clicked")}
+                    onShare={() => console.log("Share clicked")}
+                    onSave={() => console.log("Save clicked")}
+                  />
+                </div>
+              </Card>
+            </div>
+
+            {/* Explore Section */}
+            <div>
+              <h2 className="text-2xl font-semibold mb-6">Discovery Components</h2>
+              <Card className="p-6">
+                <ExploreSection
+                  categories={[
+                    {
+                      title: "Explore other options in and around Los Angeles",
+                      destinations: [
+                        { id: "socal", title: "Southern California", subtitle: "Vacation rentals" },
+                        { id: "stanton", title: "Stanton", subtitle: "Vacation rentals" },
+                        { id: "vegas", title: "Las Vegas", subtitle: "Vacation rentals" },
+                        { id: "channel", title: "Channel Islands of California", subtitle: "Vacation rentals" },
+                        { id: "sandiego", title: "San Diego", subtitle: "Vacation rentals" },
+                        { id: "central", title: "Central California", subtitle: "Vacation rentals" },
+                      ]
+                    }
+                  ]}
+                  onDestinationClick={(destination) => console.log("Destination clicked:", destination)}
+                />
+              </Card>
+            </div>
+
             {/* Action Buttons */}
             <div className="flex flex-wrap gap-4 justify-center">
               <button
@@ -224,6 +420,37 @@ const Index = () => {
           </section>
         </div>
       </main>
+
+      {/* Footer */}
+      <Footer
+        sections={[
+          {
+            title: "Support",
+            links: [
+              { id: "help", label: "Help Center", href: "/help" },
+              { id: "safety", label: "Get help with a safety issue", href: "/safety" },
+              { id: "aircover", label: "AirCover", href: "/aircover" },
+            ]
+          },
+          {
+            title: "Hosting",
+            links: [
+              { id: "your-home", label: "Airbnb your home", href: "/host" },
+              { id: "experience", label: "Airbnb your experience", href: "/experience" },
+              { id: "service", label: "Airbnb your service", href: "/service" },
+            ]
+          },
+          {
+            title: "Airbnb",
+            links: [
+              { id: "newsroom", label: "Newsroom", href: "/news" },
+              { id: "careers", label: "Careers", href: "/careers" },
+              { id: "release", label: "2025 Summer Release", href: "/release" },
+            ]
+          }
+        ]}
+        onLinkClick={(link) => console.log("Footer link clicked:", link)}
+      />
 
       {/* Modals */}
       <FilterModal
